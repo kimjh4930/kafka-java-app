@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.6'
+    compile 'org.apache.kafka:connect-api:2.6.1'
+    compile 'org.slf4j:slf4j-simple:1.7.30'
+    compile 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.11.1'
+}
+
+jar {
+    from {
+        configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}
+    }
+}
